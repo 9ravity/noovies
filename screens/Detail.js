@@ -8,21 +8,53 @@ import Votes from "../components/Votes";
 
 const BG = styled.Image`
   width: 100%;
-  height: ${Dimensions.get("window").height / 4}px;
+  height: 100%;
   opacity: 0.4;
   position: absolute;
 `;
 
-const Container = styled.View``;
+const Container = styled.View`
+  flex-direction: row;
+  align-items: center;
+  top: 30px;
+`;
 
-const Header = styled.View``;
-const Info = styled.View``;
-const Title = styled.Text``;
+const Header = styled.View`
+  height: ${Dimensions.get("window").height / 4}px;
+  align-items: center;
+  justify-content: flex-end;
+`;
+const Info = styled.View`
+  margin-left: 40px;
+  width: 50%;
+`;
+const Title = styled.Text`
+  color: white;
+  font-weight: 600;
+  font-size: 24px;
+  margin-bottom: 10px;
+`;
+
+const Data = styled.View`
+  margin-top: 80px;
+  padding: 0px 30px;
+`;
+const DataName = styled.Text`
+  color: white;
+  opacity: 0.8;
+  font-weight: 800;
+  margin-bottom: 5px;
+`;
+const DataValue = styled.Text`
+  color: white;
+  opacity: 0.8;
+  font-weight: 500;
+`;
 
 export default ({
   navigation,
   route: {
-    params: { id, title, backgroundImage, poster, votes },
+    params: { id, title, backgroundImage, poster, votes, overview },
   },
 }) => {
   console.log(navigation);
@@ -38,10 +70,18 @@ export default ({
           <Poster url={poster} />
           <Info>
             <Title>{title}</Title>
-            <Votes votes={votes} />
+            {votes && <Votes votes={votes} />}
           </Info>
         </Container>
       </Header>
+      <Data>
+        {overview && (
+          <>
+            <DataName>Overview</DataName>
+            <DataValue>{overview}</DataValue>
+          </>
+        )}
+      </Data>
     </ScrollContainer>
   );
 };
