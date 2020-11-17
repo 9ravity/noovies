@@ -1,17 +1,15 @@
 import React from "react";
-import styled from "styled-components/native";
 import HorizontalSlider from "../../components/HorizontalSlider";
+import ScrollContainer from "../../components/ScrollContainer";
 import Input from "../../components/Search/Input";
 import Vertical from "../../components/Vertical";
-
-const Container = styled.ScrollView`
-  background-color: black;
-`;
 
 //View Page handler
 const SearchPresenter = ({ movies, shows, onChange, onSubmit, keyword }) => {
   return (
-    <Container
+    <ScrollContainer
+      refreshFn={onSubmit}
+      loading={false}
       contentContainerStyl={{
         padding: 10,
       }}
@@ -50,7 +48,7 @@ const SearchPresenter = ({ movies, shows, onChange, onSubmit, keyword }) => {
           ))}
         </HorizontalSlider>
       )}
-    </Container>
+    </ScrollContainer>
   );
 };
 

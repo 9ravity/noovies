@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { tvApi } from "../../api";
-import TvPrester from "./TvPresenter";
+import TvPresenter from "./TvPresenter";
 
 export default () => {
   const [shows, setShows] = useState({
@@ -37,5 +37,5 @@ export default () => {
     getData();
   }, []);
 
-  return <TvPrester {...shows}></TvPrester>;
+  return <TvPresenter refreshFn={getData} {...shows}></TvPresenter>;
 };

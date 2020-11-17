@@ -3,6 +3,7 @@ import styled from "styled-components/native";
 import PropTypes from "prop-types";
 import Poster from "./Poster";
 import Votes from "./Votes";
+import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native";
 import { trimText } from "../utils";
 
@@ -17,8 +18,12 @@ const Title = styled.Text`
 `;
 /* 투표를 안한 평점이 없는 영화도 있음  */
 const Vertical = ({ id, poster, title, votes }) => {
+  const nav = useNavigation();
+  const goToDetail = () => {
+    nav.navigate("Detail", { id, title, poster, votes });
+  };
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={goToDetail}>
       <Container>
         <Poster url={poster} />
         <Title>{trimText(title, 10)}</Title>

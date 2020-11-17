@@ -8,6 +8,8 @@ import MoviesPresenter from "./MoviesPresenter";
 */
 
 export default () => {
+  const [refreshing, setRefreshing] = useState(false);
+
   //render를 1번만 하기 위해서 큰 state를 만들기,
   const [movies, setMovies] = useState({
     loading: true,
@@ -39,6 +41,6 @@ export default () => {
     getData();
   }, []);
 
-  return <MoviesPresenter {...movies} />;
+  return <MoviesPresenter refreshFn={getData} {...movies} />;
   // 모든 state를 보내기 때문에 proptypes 필요 없음
 };

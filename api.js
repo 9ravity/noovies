@@ -41,6 +41,9 @@ export const tvApi = {
   show: (id) => getAnything(`/tv/${id}`),
 };
 
-export const apiImage = (path) => {
-  return `https://image.tmdb.org/t/p/w500${path}`;
+export const apiImage = (
+  path,
+  defaultPoster = require("./assets/semantic/default_img.jpg")
+) => {
+  return path ? `https://image.tmdb.org/t/p/w500${path}` : defaultPoster;
 };
